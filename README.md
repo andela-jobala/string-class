@@ -1,1 +1,1 @@
-# inverted-index
+# String-Class
