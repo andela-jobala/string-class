@@ -6,8 +6,8 @@ describe('extend the String class functionality', () => {
       expect('wOrld'.hasVowels()).toBe(true);
     });
     it('returns false if a string has no vowels', () => {
-      expect('ghgsh'.hasVowels()).toBe('false');
-      expect('@#$$'.hasVowels()).toBe('false');
+      expect('ghgsh'.hasVowels()).toBe(false);
+      expect('@#$$'.hasVowels()).toBe(false);
     });
   });
 
@@ -16,16 +16,6 @@ describe('extend the String class functionality', () => {
       expect('hello'.toUpper()).toEqual('HELLO');
       expect('heLlo'.toUpper()).toEqual('HELLO');
       expect('HELLO'.toUpper()).toEqual('HELLO');
-      expect('23#abc').toEqual('23#ABC');
-    });
-
-    it('throws an error when the string is only numbers or special characters', () => {
-      expect(() => {
-        '@#$@$@$'.toUpper();
-      }).toThrow(new Error('You can\'t uppercase special characters'));
-      expect(() => {
-        '2322535'.toUpper();
-      }).toThrow(new Error('You can\'t uppercase numbers'));
     });
   });
 
@@ -37,26 +27,17 @@ describe('extend the String class functionality', () => {
       expect('caR'.toLower()).toEqual('car');
       expect('car'.toLower()).toEqual('car');
     });
-
-    it('throws an error when the string is only numbers or special characters', () => {
-      expect(() => {
-        '@#$@$@$'.toLower();
-      }).toThrow(new Error('You can\'t lowercase special characters'));
-      expect(() => {
-        '2322535'.toLower();
-      }).toThrow(new Error('You can\'t lowercase  numbers'));
-    });
   });
 
   describe('String.prototype.ucFirst', () => {
     it('returns a string with an uppercased first character', () => {
       expect('hello, world'.ucFirst()).toEqual('Hello, world');
       expect('Hello, world'.ucFirst()).toEqual('Hello, world');
-      expect('hello, World'.ucFirst().toEqual('Hello, World'));
+      expect('hello, World'.ucFirst()).toEqual('Hello, World');
     });
   });
 
-  describe('String.prototype.ucFirst', () => {
+  describe('String.prototype.isQuestion', () => {
     it('returns true if a string ends with a question mark', () => {
       expect('Bonjour ?'.isQuestion()).toEqual('true');
       expect('Bonjour?'.isQuestion().toEqual('true'));
