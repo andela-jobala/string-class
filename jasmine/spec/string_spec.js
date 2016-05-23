@@ -5,6 +5,7 @@ describe('extend the String class functionality', () => {
       expect('World'.hasVowels()).toBe(true);
       expect('wOrld'.hasVowels()).toBe(true);
     });
+
     it('returns false if a string has no vowels', () => {
       expect('ghgsh'.hasVowels()).toBe(false);
       expect('@#$$'.hasVowels()).toBe(false);
@@ -16,22 +17,34 @@ describe('extend the String class functionality', () => {
       expect('hello'.toUpper()).toEqual('HELLO');
       expect('heLlo'.toUpper()).toEqual('HELLO');
       expect('HELLO'.toUpper()).toEqual('HELLO');
+      expect('123abc'.toUpper()).toEqual('123ABC');
     });
+
+    it('does not use toUpperCase', () => {
+      spyOn(String.prototype,'toUpperCase');
+      expect('hello'.toUpper()).toEqual('HELLO');
+      expect(String.prototype.toUpperCase).not.toHaveBeenCalled();
+    });
+
   });
 
   describe('String.prototype.toLower', () => {
     it('returns all strings in lowercase', () => {
       expect('CAR'.toLower()).toEqual('car');
       expect('Car'.toLower()).toEqual('car');
-      expect('cAr'.toLower()).toEqual('car');
-      expect('caR'.toLower()).toEqual('car');
+      expect('233cAr'.toLower()).toEqual('233car');
       expect('car'.toLower()).toEqual('car');
+    });
+
+    it('does not use toLowerCase', () => {
+      spyOn(String.prototype, 'toLowerCase');
+      expect('car'.toLower());
+      expect(String.prototype.toLowerCase).not.toHaveBeenCalled();
     });
   });
 
   describe('String.prototype.ucFirst', () => {
     it('returns a string with an uppercased first character', () => {
-      expect('hello, world'.ucFirst()).toEqual('Hello, world');
       expect('hello, world'.ucFirst()).toEqual('Hello, world');
       expect('hello, World'.ucFirst()).toEqual('Hello, World');
     });
@@ -81,12 +94,20 @@ describe('extend the String class functionality', () => {
       expect('11111'.toCurrency()).toEqual('11,111');
       expect('1111.89'.toCurrency()).toEqual('1,111.89');
     });
+
+    it('returns NAN for invalid string format', () => {
+      expect('23.ce'.toCurrency()).toEqual(NaN);
+    })
   });
 
   describe('String.prototype.fromCurrency', () => {
     it('should return a number representation of the currency string', () => {
       expect('111,111.11'.fromCurrency()).toBe(111111.11);
-      expect('123,456,890'.fromCurrency()).toBe(123456890);
+      expect('123,45,6,890'.fromCurrency()).toBe(123456890);
+    });
+
+    it('returns a NAN for invalid currency strings', () => {
+      expect('abcds'.fromCurrency()).toEqual(NaN);
     });
   });
 });
