@@ -49,8 +49,10 @@ String.prototype.wordCount = function() {
 };
 
 String.prototype.toCurrency = function() {
-  var isNumberRegex = /^[0-9]+(\.[0-9]+)?$/;
-  if (!isNumberRegex.test(this)) {
+  var stringToCurrency = /^[0-9]+(\.[0-9]+)?$/;
+
+  //if the string is of an invalid format(can't be represented as currency return NaN)
+  if (!stringToCurrency.test(this)) {
     return NaN;
   }
 
@@ -60,5 +62,6 @@ String.prototype.toCurrency = function() {
 };
 
 String.prototype.fromCurrency = function() {
+  
   return Number(this.replace(/,/g, ''));
 };
