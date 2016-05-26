@@ -43,10 +43,10 @@ describe('extend the String class functionality', () => {
     });
   });
 
-  describe('String.prototype.ucFirst', () => {
+  describe('String.prototype.upperCaseFirst', () => {
     it('returns a string with an uppercased first character', () => {
-      expect('hello, world'.ucFirst()).toEqual('Hello, world');
-      expect('hello, World'.ucFirst()).toEqual('Hello, World');
+      expect('hello, world'.upperCaseFirst()).toEqual('Hello, world');
+      expect('hello, World'.upperCaseFirst()).toEqual('Hello, World');
     });
   });
 
@@ -54,9 +54,10 @@ describe('extend the String class functionality', () => {
     it('returns true if a string ends with a question mark', () => {
       expect('Bonjour ?'.isQuestion()).toEqual(true);
       expect('Bonjour?'.isQuestion()).toEqual(true);
+      expect('Bonjour? '.isQuestion()).toEqual(true);
     });
 
-    it('returns false if a string hdoes not end with a question mark', () => {
+    it('returns false if a string does not end with a question mark', () => {
       expect('Bonjour.'.isQuestion()).toEqual(false);
       expect('?Bonjour'.isQuestion()).toEqual(false);
     });
@@ -64,14 +65,14 @@ describe('extend the String class functionality', () => {
 
   describe('String.prototype.words', () => {
     var testString = 'Victory loves preparation';
-    var testString1 = 'I am @prime, I do not take orders.';
+    var testString1 = 'I am @prime, I don\'t take orders.';
 
     it('returns a list of words', () => {
       expect(testString.words()).toEqual(testString.split(' '));
     });
 
     it('does not consider punctuation as part of words', () => {
-      expect(testString1.words()).toEqual(['I', 'am', 'prime', 'I', 'do','not', 'take', 'orders']);
+      expect(testString1.words()).toEqual(['I', 'am', 'prime', 'I', 'don\'t', 'take', 'orders']);
     });
   });
 
@@ -80,6 +81,7 @@ describe('extend the String class functionality', () => {
 
     it('returns number of words', () => {
       expect(testString.wordCount()).toEqual(3);
+      expect(''.wordCount()).toEqual(0);
     });
 
     it('should use the words() methods', () => {
@@ -93,11 +95,12 @@ describe('extend the String class functionality', () => {
     it('returns currency presentation of the string', () => {
       expect('11111'.toCurrency()).toEqual('11,111');
       expect('1111.89'.toCurrency()).toEqual('1,111.89');
+      expect('123 456 53.56'.toCurrency()).toEqual('12,345,653.56');
     });
 
     it('returns NAN for invalid string format', () => {
       expect('23.ce'.toCurrency()).toEqual(NaN);
-    })
+    });
   });
 
   describe('String.prototype.fromCurrency', () => {
