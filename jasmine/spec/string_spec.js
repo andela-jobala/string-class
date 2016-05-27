@@ -4,6 +4,7 @@ describe('extend the String class functionality', () => {
     it('returns true if a string has a vowel', () => {
       expect('World'.hasVowels()).toBe(true);
       expect('wOrld'.hasVowels()).toBe(true);
+      expect('school'.hasVowels()).toBe(true);
     });
 
     it('returns false if a string has no vowels', () => {
@@ -46,7 +47,8 @@ describe('extend the String class functionality', () => {
   describe('String.prototype.upperCaseFirst', () => {
     it('returns a string with an uppercased first character', () => {
       expect('hello, world'.upperCaseFirst()).toEqual('Hello, world');
-      expect('hello, World'.upperCaseFirst()).toEqual('Hello, World');
+      expect('hello, World'.upperCaseFirst()).toEqual('Hello, world');
+      expect('HELLO'.upperCaseFirst()).toEqual('Hello');
     });
   });
 

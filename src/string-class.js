@@ -49,7 +49,7 @@ String.prototype.upperCaseFirst = function() {
    * this.slice(1), extracts every character from the second character
    * we then append the uppercased first character with every other character from index 1
    */
-  return this.charAt(0).toUpper() + this.slice(1);
+  return this.charAt(0).toUpper() + this.slice(1).toLower();
 };
 
 String.prototype.isQuestion = function() {
@@ -59,6 +59,8 @@ String.prototype.isQuestion = function() {
    *  s+ is a metacharacter that matches blank, tab \t, form-feed \f and newline \r or \n
    *  $ is an anchor indicating the end of the scope to match
    */
+  // trim the string
+
   return /[?\s+]$/.test(this);
 };
 
@@ -104,8 +106,9 @@ String.prototype.toCurrency = function() {
    */
   return stringToCurrency.replace(/(\d)(?=(\d{3})+(?!\d))/g, function(number) {
 
-  // Add comma to matched number
-  return number + ',';
+    // Add comma to matched number
+    // I can hear you   Tge
+    return number + ',';
   });
 };
 
