@@ -63,6 +63,10 @@ describe('extend the String class functionality', () => {
       expect('Bonjour.'.isQuestion()).toEqual(false);
       expect('?Bonjour'.isQuestion()).toEqual(false);
     });
+
+    it('checks that a string containing a ? only is not a question', () => {
+      expect('?'.isQuestion()).toEqual('not a question');
+    });
   });
 
   describe('String.prototype.words', () => {

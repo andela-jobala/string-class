@@ -54,14 +54,18 @@ String.prototype.upperCaseFirst = function() {
 
 String.prototype.isQuestion = function() {
 
+  // if a string only has a ? then its not a question
+  if(this.length === 1) {
+    if(/\?$/.test(this.trim())) {
+      return 'not a question';
+    }
+  }
   /**
    * [?\s+]$ matches any string that ends with a question mark
    *  s+ is a metacharacter that matches blank, tab \t, form-feed \f and newline \r or \n
    *  $ is an anchor indicating the end of the scope to match
    */
-  // trim the string
-
-  return /[?\s+]$/.test(this);
+  return /\?$/.test(this.trim());
 };
 
 String.prototype.words = function() {
